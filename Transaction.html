@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+        header {
+            background-color: black;
+            color: #fff;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        #menu {
+            display: flex;
+        }
+
+        #menu li {
+            list-style: none;
+            margin-left: 20px;
+        }
+        #header-image {
+        height: 100px;
+        width: 180px;
+        margin-left: 20px;
+
+        }
+
+        .btn {
+        font-size: 24px;
+        background-color: black;
+        color: white;
+        display: inline-block;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .transaction-history-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transaction-table th, .transaction-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+
+</style>
+<header>
+    <tr>
+        <th>
+            <a href="Homepage.html">
+<img src="logo.jpg" alt="Dexter Exchange Logo" id="header-image">
+</a>
+
+            
+        </th>
+
+        <th>
+            <div class="main-content">
+        <div class="button-group" style="margin-left: auto; margin-right: auto;">
+            <a href="Pay.html" class="btn">PAY</a>
+            <a href="Convert.html" class="btn">CONVERT</a>
+            <button class="btn">TRANSACTION HISTORY</button>
+        </div>
+    </div>
+        </th>
+
+        <th>
+            <ul id="menu">
+                <li><a style="margin-top: 20px;" href="ContactUs.html" class="btn">Contact Us</button></li>
+                <li><a style="margin-top: 20px;" href="Login.html" class="btn">Login</a></li>
+            </ul>
+        </th>
+    </tr>
+    </header>
+</head>
+<body>
+    <div class="transaction-history-container">
+        <h1>Transaction History</h1>
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>From Currency</th>
+                    <th>To Currency</th>
+                    <th>Amount</th>
+                    <th>Converted Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Transaction history rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const transactionHistory = [
+    { date: '2023-08-10', fromCurrency: 'USD', toCurrency: 'EUR', amount: 100, convertedAmount: 85 },
+    { date: '2023-08-15', fromCurrency: 'SGD', toCurrency: 'MYR', amount: 340, convertedAmount: 100 },
+    { date: '2023-08-16', fromCurrency: 'MYR', toCurrency: 'SGD', amount: 38.65, convertedAmount: 100 },
+    { date: '2023-08-20', fromCurrency: 'USD', toCurrency: 'GBP', amount: 146, convertedAmount: 200 },
+    { date: '2023-08-22', fromCurrency: 'GBP', toCurrency: 'SGD', amount: 200.27, convertedAmount: 85 },
+    { date: '2023-08-31', fromCurrency: 'KWD', toCurrency: 'INR', amount: 56139.13, convertedAmount: 200 },
+    { date: '2023-09-11', fromCurrency: 'MYR', toCurrency: 'INR', amount: 2176.18, convertedAmount: 150 },
+
+        ];
+
+// Function to populate the transaction history table
+function populateTransactionHistory() {
+    const tableBody = document.querySelector('.transaction-table tbody');
+    
+    transactionHistory.forEach(transaction => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${transaction.date}</td>
+            <td>${transaction.fromCurrency}</td>
+            <td>${transaction.toCurrency}</td>
+            <td>${transaction.amount}</td>
+            <td>${transaction.convertedAmount}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Call the function to populate the table when the page loads
+window.addEventListener('load', populateTransactionHistory);
+    </script>
+    
+</body>
+</html>

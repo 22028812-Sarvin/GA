@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+ 
+   
+
+
+ body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: black;
+            color: #fff;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 150px auto;
+            padding: 16px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+#header-image {
+        height: 100px;
+        width: 180px;
+        margin-left: 20px;
+
+        }
+
+.btn {
+        font-size: 24px;
+        background-color: black;
+        color: white;
+        display: inline-block;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    
+    
+    #menu {
+            display: flex;
+        }
+
+        #menu li {
+            list-style: none;
+            margin-left: 20px;
+        }
+    
+
+h1{
+    margin-bottom: 50px;
+    text-align:center;
+}
+
+form {
+    display: grid;
+    grid-gap: 16px;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    text-align: left;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+    </style>
+
+
+<body>
+    <header>
+            <tr>
+                <th>
+                    <a href="Homepage.html">
+        <img src="logo.jpg" alt="Dexter Exchange Logo" id="header-image">
+    </a>
+    
+                    
+                </th>
+        
+                <th>
+                    <div class="main-content">
+                <div class="button-group" style="margin-left: auto; margin-right: auto;">
+                    <a href="Pay.html" class="btn">PAY</a>
+                    <a href="Convert.html" class="btn">CONVERT</a>
+                    <a href="Transaction.html" class="btn">TRANSACTION HISTORY</a>
+                </div>
+            </div>
+                </th>
+        
+                <th>
+                    <ul id="menu">
+                        <li style="margin-top: 10px;"><button class="btn">Contact Us</button></li>
+                        <li><a style="margin-top: 10px;" href="Login.html" class="btn">Login</a></li>
+                    </ul>
+                </th>
+            </tr>   
+    </header>
+    <main>
+        <h1 style="margin-bottom: 50px;">Send us your feedback and message!</h1>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input style="margin-right: 200px;" type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="contact-number">Contact Number:</label>
+            <input type="tel" id="contact-number" name="contact-number" required> 
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            
+            <button type="submit">Send</button>
+        </form>
+        <div id="response-message"></div>
+   <script>
+
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const contactNumber = document.getElementById("contact-number").value;
+    const message = document.getElementById("message").value;
+
+    if (!/^[0-9]+$/.test(contactNumber)) {
+        const errorMessage = "Please enter a valid contact number (only digits)";
+        document.getElementById("response-message").textContent = errorMessage;
+        return;
+    }
+
+
+    
+    const responseMessage = `Thank you, ${name}! Your message has been received. Contact Number: ${contactNumber}`;
+    document.getElementById("response-message").textContent = responseMessage;
+    document.getElementById("contact-form").reset();
+});
+   </script>
+</body>
+</html>

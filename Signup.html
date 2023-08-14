@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(download.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .header {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 250px;
+            height: auto;
+        }
+
+        .signup-container {
+            width: 500px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-header {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .qr-code-section {
+            
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.jpg" alt="Logo" class="logo">
+    </div>
+
+    <div class="signup-container">
+        <div class="signup-header">
+            Sign Up
+        </div>
+        <div class="qr-code-section">
+            <p>Scan QR Code to Sign Up</p>
+            <p><img src="QRcode.png" alt="QR Code to Sign Up" class="qr-code-section"></p>
+        </div>
+        <form class="signup-form">
+        <div class="form-group">
+            <label class="form-label">Username:</label>
+            <input type="text" class="form-input" id="username" required>
+        </div>
+            <div class="form-group">
+                <label class="form-label">Email:</label>
+                <input type="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone Number:</label>
+                <input type="tel" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password:</label>
+                <input type="password" class="form-input" id="password"required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Confirm Password:</label>
+                <input type="password" class="form-input" id="confirm-password" required>
+            </div>
+
+            <a href="GA.html" type="submit" class="form-button">Sign Up</a>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password');  // Change 'password' to 'confirm-password'
+            const confirmPasswordInput = document.getElementById('confirm-password');
+    
+            confirmPasswordInput.addEventListener('input', () => {
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    confirmPasswordInput.setCustomValidity('Passwords do not match');
+                } else {
+                    confirmPasswordInput.setCustomValidity('');
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
+
+

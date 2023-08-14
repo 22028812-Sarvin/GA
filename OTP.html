@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Page</title>
+    <style>
+     body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.subtext {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.timer {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#cancel-btn {
+    background-color: #e74c3c;
+}
+
+#resend-btn {
+    background-color: #f39c12;
+    margin-right: 10px;
+}
+
+#countdown {
+    font-weight: bold;
+}
+
+#cancel-btn,
+#resend-btn {
+    width: 120px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Complete this Conversion</h1>
+        <p class="subtext">Enter the One-Time Password that was sent to your registered mobile number.</p>
+        <p class="subtext">Contact Number: <span id="contact-number"></span></p>
+        <p class="subtext">Amount to Convert: <span id="amount-to-convert"></span></p>
+        <p class="subtext">Date: 15 Aug 2023</p>
+        <p class="subtext">Card Number: <span id="card-number"></span></p>
+        <form id="otp-form">
+            <label for="otp">OTP:</label>
+            <input type="text" id="otp" name="otp" maxlength="6" required>
+            <div class="timer">Time Left: <span id="countdown">180</span> seconds</div>
+            <button type="button" id="cancel-btn">Cancel</button>
+            <button type="button" id="resend-btn">Resend Code</button>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const otpForm = document.getElementById('otp-form');
+    const countdownElement = document.getElementById('countdown');
+    const resendButton = document.getElementById('resend-btn');
+    
+    const contactNumber = '+123456789'; // Replace with the actual contact number
+    const amountToConvert = '100 USD'; // Replace with the actual amount
+    const cardNumber = '**** **** **** 1234'; // Replace with the actual card number
+
+    // Set the contact number, amount, and card number in the page
+    document.getElementById('contact-number').textContent = contactNumber;
+    document.getElementById('amount-to-convert').textContent = amountToConvert;
+    document.getElementById('card-number').textContent = cardNumber;
+
+    let timeLeft = 180; // 3 minutes in seconds
+    let countdownInterval;
+
+    function startCountdown() {
+        countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    function updateCountdown() {
+        if (timeLeft > 0) {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+        } else {
+            clearInterval(countdownInterval);
+            countdownElement.textContent = 'Time Expired';
+        }
+    }
+
+    startCountdown();
+
+    resendButton.addEventListener('click', function() {
+        if (timeLeft === 0) {
+            timeLeft = 180; // Reset timer
+            startCountdown();
+            countdownElement.textContent = timeLeft;
+            // Simulate sending OTP
+            alert('OTP Resent to your registered mobile number.');
+        } else {
+            alert('Please wait before requesting another OTP.');
+        }
+    });
+
+    otpForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const enteredOtp = otpForm.otp.value;
+
+        if (enteredOtp === '123456') { // Replace with the actual OTP
+            clearInterval(countdownInterval);
+            alert('OTP is valid. Conversion successful.');
+            window.location.href = 'success-page.html'; // Redirect to success page
+        } else {
+            alert('Invalid OTP. Please try again.');
+        }
+    });
+
+    document.getElementById('cancel-btn').addEventListener('click', function() {
+        clearInterval(countdownInterval);
+        alert('Conversion canceled.');
+        window.location.href = 'payment-page.html'; // Redirect to payment page
+    });
+});
+        
+    </script>
+    
+</body>
+</html>
+</html>
